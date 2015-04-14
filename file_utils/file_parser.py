@@ -26,4 +26,4 @@ def extract_dict_from_line(line, nested=False):
 
 if __name__ == "__main__":
     line_info = 'This is a test line:{"name":"leo", "age":24}'
-    print type(extract_dict_from_line(line_info))
+    print extract_dict_from_line(line_info)
