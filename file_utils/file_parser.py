@@ -12,7 +12,7 @@ PATTERN_JSON = re.compile(r'^.*?(\{.*\})\s*$')
 
 def extract_dict_from_line(line, nested=False):
     '''
-        Return a dict from given line exists, or return None.
+        Return a dict from given line if exists, or return None.
     '''
     try:
         parsed_dict = json.loads(line)
