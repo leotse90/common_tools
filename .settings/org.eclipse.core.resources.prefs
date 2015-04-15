@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
 encoding//file_utils/file_parser.py=utf-8
+encoding//net_utils/http_utils.py=utf8
 encoding//struct_utils/map_utils.py=utf-8
