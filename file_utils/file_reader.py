@@ -24,6 +24,11 @@ def get_all_file_paths(dirname):
     for root, _, files in os.walk(dirname):
         for file_name in files:
             file_paths.append(os.path.join(root, file_name))
+            
+    # you also can use below to get all files, you should use extend cause
+    # the container file_paths initial in every loop. 
+#     file_paths.extend([os.path.join(root, file_name) for file_name in files])            
+
     return file_paths
     
 def yield_all_file_paths(dirname):
