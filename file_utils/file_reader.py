@@ -26,6 +26,17 @@ def get_all_file_paths(dirname):
             file_paths.append(os.path.join(root, file_name))
     return file_paths
     
+def yield_all_file_paths(dirname):
+    '''
+        Recommend you use this function instead of 'get_all_file_paths' 
+        when there are a lot of files in the directory. 
+    '''
+    for root, _, files in os.walk(dirname):
+        for file_name in files:
+            file_path = os.path.join(root, file_name)
+            yield file_path
+    
 if __name__ == "__main__":
     dirname = r'C:\Develop\test'
-    print get_all_file_paths(dirname)
+    for filepath in yield_all_file_paths(dirname):
+        print filepath
