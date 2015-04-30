@@ -28,7 +28,7 @@ def get_all_file_paths(dirname):
     return file_paths
     
 def yield_all_file_paths(dirname):
-    # recommend you use this function instead of 'get_all_file_paths' 
+    # recommend you use this function instead of get_all_file_paths 
     # when there are a lot of files in the directory. 
     for root, _, files in os.walk(dirname):
         for file_name in files:
