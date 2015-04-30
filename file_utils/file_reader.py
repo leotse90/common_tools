@@ -8,18 +8,14 @@ Tools for read a file or a directory.
 import os
 
 def make_sure_dir_exists(dirname):
-    '''
-        Check if a directory exists and create it if not.
-    '''
+    # check if a directory exists and create it if not.
     if not os.path.exists(dirname):
         os.makedirs(dirname)
     elif not os.path.isdir(dirname):
         raise Exception("Given path exists and it's not a directory.")
     
 def get_all_file_paths(dirname):
-    '''
-        Return the file paths in a directory by walking the tree.
-    '''
+    # return the file paths in a directory by walking the tree.
     file_paths = []
     for root, _, files in os.walk(dirname):
         for file_name in files:
@@ -32,10 +28,8 @@ def get_all_file_paths(dirname):
     return file_paths
     
 def yield_all_file_paths(dirname):
-    '''
-        Recommend you use this function instead of 'get_all_file_paths' 
-        when there are a lot of files in the directory. 
-    '''
+    # recommend you use this function instead of 'get_all_file_paths' 
+    # when there are a lot of files in the directory. 
     for root, _, files in os.walk(dirname):
         for file_name in files:
             file_path = os.path.join(root, file_name)
