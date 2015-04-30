@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//file_utils/file_parser.py=utf-8
 encoding//file_utils/file_reader.py=utf-8
+encoding//file_utils/hdfs_handler.py=utf-8
 encoding//log_utils/__init__.py=utf-8
 encoding//log_utils/logger.py=utf-8
 encoding//mail_utils/send_mail.py=utf-8
