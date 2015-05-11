@@ -25,14 +25,14 @@ def order_by_key(src_dict, reverse=False):
 
 def merge_two_dicts(dict1, dict2):
     '''
-        Merge a list of dictionary into a dictionary and return.
+        Merge two dictionaries into a dictionary and return.
         If more than one dictionary have the same key, the last value will appear in the result.
     '''
     return merge_dicts([dict1, dict2])
 
 def merge_dicts(dict_list):
     '''
-        Merge a list of dictionary into a dictionary and return.
+        Merge a list of dictionaries into a dictionary and return.
         If more than one dictionary have the same key, the last value will appear in the result.
     '''
     result = {}
