@@ -72,6 +72,4 @@ def get_content(url):
     content = response.read()
     response.close()
     return content
-
-if __name__ == "__main__":
-    print get_content("http://www.xuetangx.com/")
+    
