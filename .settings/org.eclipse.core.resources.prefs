@@ -7,4 +7,5 @@ encoding//log_utils/logger.py=utf-8
 encoding//mail_utils/send_mail.py=utf-8
 encoding//net_utils/http_utils.py=utf8
 encoding//net_utils/ip_utils.py=utf8
+encoding//struct_utils/list_utils.py=utf-8
 encoding//struct_utils/map_utils.py=utf-8
