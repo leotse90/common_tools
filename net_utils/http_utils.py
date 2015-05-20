@@ -15,16 +15,13 @@ import hashlib
 '''
 Call GET method API and return the response.
 
-@param server_conf:format {"gateway":"gateway info", "secret_key":"secret key"}
+@param server_conf:format {"gateway":"gateway info"}
 @param params:format [("param1", "value1"), ("param2", "value2"), ...] 
 '''
 def invoke_get_api(server_conf, api, params):
     # url example: http://192.168.9.245/videos?id=0&hash="acxd23asd2dafpiojufdufhiqofqo"
     gateway = server_conf["gateway"]
-    secret_key = server_conf["secret_key"]
-    # hash_key for auth
-    hash_key = hashlib.md5(secret_key).hexdigest()
-    params_str = "&".join(["=".join(e) for e in params]) + "&hashkey=" + hash_key
+    params_str = "&".join(["=".join(e) for e in params])
     url = "http://{gateway}/{api}?{params_str}".format(gateway=gateway, api=api, params_str=params_str)
     
     req = urllib2.Request(url)    
@@ -36,16 +33,12 @@ def invoke_get_api(server_conf, api, params):
 '''
 Call POST method API and return the response.
 
-@param server_conf:format {"gateway":"gateway info", "secret_key":"secret key"}
+@param server_conf:format {"gateway":"gateway info"}
 @param post_data:format {"key1":"value1","key2":"value2", ...} 
 '''
 def invoke_post_api(server_conf, api, post_data):
     # url
     gateway = server_conf["gateway"]
-    secret_key = server_conf["secret_key"]
-    # hash_key for auth
-    hash_key = hashlib.md5(secret_key).hexdigest()
-    post_data["hashkey"] = hash_key
     post_data_urlencode = urllib.urlencode(post_data)
 
     url = "http://{gateway}/{api}".format(gateway=gateway, api=api)
