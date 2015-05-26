@@ -9,8 +9,6 @@ Tools for Http request and response.
 import os
 import urllib
 import urllib2
-import hashlib
-
 
 '''
 Call GET method API and return the response.
