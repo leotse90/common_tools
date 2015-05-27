@@ -6,6 +6,8 @@ Tools for read a file or a directory.
 '''
 
 import os
+import time
+import datetime
 
 def make_sure_dir_exists(dirname):
     # check if a directory exists and create it if not.
@@ -34,6 +36,17 @@ def yield_all_file_paths(dirname):
         for file_name in files:
             file_path = os.path.join(root, file_name)
             yield file_path
+    
+def get_file_mtime(filepath):
+    # get file create time
+    # format example: "2015-05-27 14:40:00"
+    return datetime.datetime.utcfromtimestamp(time.mktime(time.localtime(os.stat(filepath).st_mtime))).strftime("%Y-%m-%d %H:%M:%S")
+    
+def remove_file(filepath):
+    # remove file by path if exists
+    if os.path.exists(filepath) and os.path.isfile(filepath):
+        os.remove(filepath)
+
     
 if __name__ == "__main__":
     dirname = r'C:\Develop\test'
