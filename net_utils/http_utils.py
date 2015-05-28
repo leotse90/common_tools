@@ -23,6 +23,7 @@ def invoke_get_api(server_conf, api, params):
     params_str = "&".join(["=".join(e) for e in params])
     
     # you can use below but sometimes it can't work when data is too long.
+    # The reason is that .read() isn't guaranteed to return the entire response, given the nature of sockets.
 #     url = "http://{gateway}/{api}?{params_str}".format(gateway=gateway, api=api, params_str=params_str)
 #     req = urllib2.Request(url)    
 #     rep = urllib2.urlopen(req)
