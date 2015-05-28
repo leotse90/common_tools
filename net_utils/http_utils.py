@@ -9,6 +9,7 @@ Tools for Http request and response.
 import os
 import urllib
 import urllib2
+import httplib
 
 '''
 Call GET method API and return the response.
@@ -20,11 +21,17 @@ def invoke_get_api(server_conf, api, params):
     # url example: http://192.168.9.245/videos?id=0&hash="acxd23asd2dafpiojufdufhiqofqo"
     gateway = server_conf["gateway"]
     params_str = "&".join(["=".join(e) for e in params])
-    url = "http://{gateway}/{api}?{params_str}".format(gateway=gateway, api=api, params_str=params_str)
     
-    req = urllib2.Request(url)    
-    rep = urllib2.urlopen(req)
-    res = rep.read()
+    # you can use below but sometimes it can't work when data is too long.
+#     url = "http://{gateway}/{api}?{params_str}".format(gateway=gateway, api=api, params_str=params_str)
+#     req = urllib2.Request(url)    
+#     rep = urllib2.urlopen(req)
+#     res = rep.read()
+    
+    ip_addr, port = gateway.split(":")
+    http_conn = httplib.HTTPConnection(ip_addr, port)
+    http_conn.request("GET", "/{api}?{params_str}".format(api=api, params_str=params_str))
+    res = http_conn.getresponse().read()
     
     return res
     
