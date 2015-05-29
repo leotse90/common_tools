@@ -7,7 +7,7 @@ Tools for Http request and response.
 '''
 
 import os
-import urllib
+import json
 import urllib2
 import httplib
 import commands
@@ -46,7 +46,7 @@ Call POST method API and return the response.
 def invoke_post_api(server_conf, api, post_data):
     # url
     gateway = server_conf["gateway"]
-    post_data_urlencode = urllib.urlencode(post_data)
+    post_data_urlencode = json.dumps(post_data)
 
     url = "http://{gateway}/{api}".format(gateway=gateway, api=api)
     req = urllib2.Request(url=url, data=post_data_urlencode)
