@@ -10,6 +10,7 @@ import os
 import urllib
 import urllib2
 import httplib
+import commands
 
 '''
 Call GET method API and return the response.
@@ -62,9 +63,9 @@ def download_file_by_url(file_url, file_name, file_store_path):
     # wget -O /home/leotse/test/test.mp4 \
     # http://192.168.9.230:9096/group1/M00/00/00/wKgJ51VasR6AdCYSAI58WC-SRBw304.mp4
     file_path = os.path.join(file_store_path, file_name)
-    ret = os.system("wget -O {dst_path} {src_url}".format(dst_path=file_path, src_url=file_url))
+    rt, _ = commands.getstatusoutput("wget -O {dst_path} '{src_url}'".format(dst_path=file_path, src_url=file_url))
 
-    return ret == 0
+    return rt == 0
 
 def get_content(url):
     response = urllib2.urlopen(url)
