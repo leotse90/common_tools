@@ -53,7 +53,7 @@ def mem_info():
 
 def disk_info():
     disk_info_dict = {}
-    dinfo = os.statvfs()
+    dinfo = os.statvfs("/")
     disk_info_dict["Available"] = dinfo.f_bsize * dinfo.f_bavail
     disk_info_dict["Capacity"] = dinfo.f_bsize * dinfo.f_blocks
     disk_info_dict["Used"] = dinfo.f_bsize * dinfo.f_bfree
