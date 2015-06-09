@@ -20,11 +20,11 @@ def cpu_load_info():
     load_info_dict = {}
     with open("/proc/loadavg", "r") as f:
         info = f.read().split()
-        load_info_dict["lavg_1"] = float(info[0])
-        load_info_dict["lavg_5"] = float(info[1])
-        load_info_dict["lavg_15"] = float(info[2])
-        load_info_dict["nr"] = info[3]
-        load_info_dict["last_pid"] = int(info[4])
+        load_info_dict["Lavg_1"] = float(info[0])
+        load_info_dict["Lavg_5"] = float(info[1])
+        load_info_dict["Lavg_15"] = float(info[2])
+        load_info_dict["Nr"] = info[3]
+        load_info_dict["Last_pid"] = int(info[4])
 
     return load_info_dict
 
