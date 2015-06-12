@@ -6,6 +6,7 @@ Tools for get information of server.
 @author: LeoTse
 '''
 import os
+import time
 import socket
 
 def cpu_load_info():
@@ -71,4 +72,33 @@ def port_available(ip, port):
     except:
         sc.close()
         return False
-    
+
+def get_time_list():
+    """
+    Fetches a list of time units the cpu has spent in various modes
+    Detailed explanation at http://www.linuxhowtos.org/System/procstat.htm
+    """
+    cpuStats = file("/proc/stat", "r").readline()
+    columns = cpuStats.replace("cpu", "").split(" ")
+    return map(int, filter(None, columns))
+
+def delta_time(interval):
+    """
+    Returns the difference of the cpu statistics returned by getTimeList
+    that occurred in the given time delta
+    """
+    timeList1 = get_time_list()
+    time.sleep(interval)
+    timeList2 = get_time_list()
+    return [(t2-t1) for t1, t2 in zip(timeList1, timeList2)]
+
+def cpu_usage_info():
+    """
+    Returns the cpu load as a value from the interval [0.0, 1.0]
+    """
+    interval = 0.1
+    dt = list(delta_time(interval))
+    idle_time = float(dt[3])
+    total_time = sum(dt)
+    cpu_usage = 1-(idle_time/total_time)
+    return cpu_usage
