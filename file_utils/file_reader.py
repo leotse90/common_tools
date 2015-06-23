@@ -7,6 +7,7 @@ Tools for read a file or a directory.
 
 import os
 import time
+import stat
 import datetime
 
 def make_sure_dir_exists(dirname):
@@ -46,6 +47,21 @@ def remove_file(filepath):
     # remove file by path if exists
     if os.path.exists(filepath) and os.path.isfile(filepath):
         os.remove(filepath)
+
+def remove_dir_tree(dir, include_self = True):
+    if dir and os.path.isdir(dir):
+        walker = os.walk(dir, False)
+        for item in walker:
+            for d in item[1]:
+                p = os.path.join(item[0], d)
+                os.rmdir(p)
+            for f in item[2]:
+                p = os.path.join(item[0], f)
+                os.chmod(p, stat.S_IWUSR)
+                os.remove(p)
+
+        if include_self:
+            os.rmdir(dir)
 
     
 if __name__ == "__main__":
