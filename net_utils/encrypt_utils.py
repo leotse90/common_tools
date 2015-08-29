@@ -11,7 +11,6 @@ encrypt steps:
 @author:leotse
 '''
 
-import random
 import base64
 
 APPENDIX = u'leotse'
