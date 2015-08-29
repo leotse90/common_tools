@@ -13,12 +13,12 @@ encrypt steps:
 
 import base64
 
-APPENDIX = u'leotse'
+PREFIX = u'leotse'
 RANDOM_NUMS_COUNT = 3
 
 def lt_encrypt(source):
     bstr1 = base64.b64encode(source)
-    bstr1 = APPENDIX + bstr1
+    bstr1 = PREFIX + bstr1
     random_appendix = bstr1[-RANDOM_NUMS_COUNT:]
     bstr2 = base64.b64encode(bstr1)
     astr = bstr2 + random_appendix
@@ -29,6 +29,6 @@ def lt_decrypt(source):
     cstr = source.swapcase()
     astr = cstr[:-RANDOM_NUMS_COUNT]
     dstr1 = base64.b64decode(astr)
-    astr = dstr1[len(APPENDIX):]
+    astr = dstr1[len(PREFIX):]
     decrypt_str = base64.b64decode(astr)
     return decrypt_str
