@@ -23,24 +23,13 @@ def lt_encrypt(source):
     random_appendix = bstr1[-RANDOM_NUMS_COUNT:]
     bstr2 = base64.b64encode(bstr1)
     astr = bstr2 + random_appendix
-    encrypt_str = case_convert(astr)
+    encrypt_str = astr.swapcase()
     return encrypt_str
 
 def lt_decrypt(source):
-    cstr = case_convert(source)
+    cstr = source.swapcase()
     astr = cstr[:-RANDOM_NUMS_COUNT]
     dstr1 = base64.b64decode(astr)
     astr = dstr1[len(APPENDIX):]
     decrypt_str = base64.b64decode(astr)
     return decrypt_str
-
-def case_convert(str):
-    n_str = u""
-    for c in str:
-        if c.isupper():
-            n_str += c.lower()
-        else:
-            n_str += c.upper()
-
-    return n_str
-
