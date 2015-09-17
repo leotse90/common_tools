@@ -58,3 +58,6 @@ def read_dir(dir_path):
     if os.system("hadoop dfs -test -e {dir_path}".format(dir_path=dir_path)) == 0:
         return os.popen('hadoop dfs -cat {dir_path}/*'.format(dir_path=dir_path)).readlines()
     return None
+
+def execute_hql(hive_sql):
+    return os.system('''hive -e "{hive_sql}"'''.format(hive_sql=hive_sql))
